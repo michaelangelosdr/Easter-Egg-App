@@ -21,7 +21,7 @@ public class Egg_TapScript : MonoBehaviour {
 	{
 		if (Input.GetMouseButtonDown (0)) {
 			//Particles.SetActive (true);
-			gameObject.GetComponent<MeshCollider>().enabled = false;
+			//gameObject.GetComponent<MeshCollider>().enabled = false;
 			ANIM_GMSCRIPT.EggMove_Focus(transform.position);
 		}
 	}
