@@ -7,6 +7,7 @@ public class AnimationScript : MonoBehaviour {
 
 	Camera MainCamera;
 
+	[SerializeField] Game_Manager_Script GM_Script;
 	public GameObject EggObject;
 	private Vector3 startPos;
 	private Vector3 FrontOfCamera;
@@ -19,27 +20,16 @@ public class AnimationScript : MonoBehaviour {
 	//For Editor Uses only
 	private Vector3 Tempholder;
 
-	private int NumOf_EggsCollected;
-	[SerializeField] Text Text_Eggcollected;
-
-
-	//Canvas Items
-	[SerializeField] GameObject canvas_InventoryPanel;
-	[SerializeField] GameObject canvas_Counter;
-
 
 	// Use this for initialization
-	void Start () {
+	public	void Start () {
 		//Change to player data, for prototype use only.
-		NumOf_EggsCollected = 0;
-		Text_Eggcollected.text = NumOf_EggsCollected.ToString();
 		MainCamera = Camera.main;
 		startPos = EggObject.transform.position;
 		Tempholder = startPos;
 		FrontOfCamera = new Vector3 (0, 0, 9);
 		Debug.Log (Screen.width);
 		LowerRightOfScreen = new Vector3 (6, -4, 9);
-		//StartCoroutine (MoveEgg_Coroutine ());
 	}
 	
 	// Update is called once per frame
@@ -77,8 +67,6 @@ public class AnimationScript : MonoBehaviour {
 	public IEnumerator Anim_PlayOpenAnimation_Coroutine()
 	{
 		//Enter here if any animations will play after egg gets highlighted
-
-
 		curLerptime = 0;
 		startPos = EggObject.transform.position;
 		yield return new WaitForSeconds (lerpTime);
@@ -99,19 +87,9 @@ public class AnimationScript : MonoBehaviour {
 		yield return new WaitForSeconds (lerpTime);
 		//StartCoroutine (Anim_MoveToBasket_Coroutine());
 		Debug.Log("Basket is now with an egg");
-		IncreaseScore ();
+		GM_Script.IncreaseScore ();
 	}
 
 
 
-	public void IncreaseScore()
-	{
-		NumOf_EggsCollected++;
-		Text_Eggcollected.text = NumOf_EggsCollected.ToString ();
-	}
-
-	public void Canvas_ShowInventory()
-	{
-		canvas_InventoryPanel.SetActive (true);
-	}
 }
