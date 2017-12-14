@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Game_Manager_Script : MonoBehaviour {
 
 	public int NUM_EggsCollected;
+
 
 	[SerializeField] Egg_Resources Egg_Resource_Handler;
 	[SerializeField] AnimationScript Animation_Handler;
@@ -17,6 +19,17 @@ public class Game_Manager_Script : MonoBehaviour {
 		Egg_Resource_Handler.Start ();
 		Canvas_Handler.Start ();
 	}	
+
+	void Update()
+	{
+		#if UNITY_EDITOR
+		if(Input.GetKeyDown(KeyCode.Y))
+		{
+			IncreaseScore();
+		}
+		#endif
+
+	}
 
 
 	public void IncreaseScore()

@@ -27,7 +27,7 @@ public class AnimationScript : MonoBehaviour {
 		MainCamera = Camera.main;
 		startPos = EggObject.transform.position;
 		Tempholder = startPos;
-		FrontOfCamera = new Vector3 (0, 0, 9);
+		FrontOfCamera = Camera.main.ViewportToWorldPoint(new Vector3(0.5f,0.5f,5.0f));
 		Debug.Log (Screen.width);
 		LowerRightOfScreen = new Vector3 (6, -4, 9);
 	}
@@ -39,7 +39,8 @@ public class AnimationScript : MonoBehaviour {
 			curLerptime = 0;
 			EggObject.transform.position = Tempholder;
 		}
-
+		FrontOfCamera = Camera.main.ViewportToWorldPoint(new Vector3(0.5f,0.5f,5.0f));
+		Debug.Log (FrontOfCamera);
 	}
 
 
