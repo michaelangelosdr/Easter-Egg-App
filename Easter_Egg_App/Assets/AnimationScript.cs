@@ -12,9 +12,10 @@ public class AnimationScript : MonoBehaviour {
 	private Vector3 startPos;
 	private Vector3 FrontOfCamera;
 	private Vector3 LowerRightOfScreen;
-	public float lerpTime;
+	public float timeToAnimateto_screen;
+	public float timeToAnimateto_Basket;
 	private float curLerptime;
-
+	[SerializeField] GameObject Egg_Particle_SFX;
 
 
 	//For Editor Uses only
@@ -29,7 +30,7 @@ public class AnimationScript : MonoBehaviour {
 		Tempholder = startPos;
 		FrontOfCamera = Camera.main.ViewportToWorldPoint(new Vector3(0.5f,0.5f,5.0f));
 		Debug.Log (Screen.width);
-		LowerRightOfScreen = new Vector3 (6, -4, 9);
+		LowerRightOfScreen = Camera.main.ViewportToWorldPoint(new Vector3(1.0f,-0.01f,5.0f));
 	}
 	
 	// Update is called once per frame
@@ -55,12 +56,14 @@ public class AnimationScript : MonoBehaviour {
 		while (EggObject.transform.position != FrontOfCamera)
 		{
 		curLerptime += Time.deltaTime;
-		if (curLerptime >= lerpTime) {curLerptime = lerpTime;}
-		float perc = curLerptime / lerpTime;
+			if (curLerptime >= timeToAnimateto_screen) {curLerptime =timeToAnimateto_screen;}
+			float perc = curLerptime /timeToAnimateto_screen;
 		EggObject.transform.position = Vector3.Lerp (startPos, FrontOfCamera,perc);
 		yield return null;
 		}
 		Debug.Log ("Done Animation one");
+		Egg_Particle_SFX.SetActive(true);
+		Egg_Particle_SFX.transform.position = EggObject.transform.position;
 		yield return new WaitForSeconds (1.0f);
 		StartCoroutine (Anim_PlayOpenAnimation_Coroutine ());
 	}
@@ -68,9 +71,11 @@ public class AnimationScript : MonoBehaviour {
 	public IEnumerator Anim_PlayOpenAnimation_Coroutine()
 	{
 		//Enter here if any animations will play after egg gets highlighted
+
 		curLerptime = 0;
 		startPos = EggObject.transform.position;
-		yield return new WaitForSeconds (lerpTime);
+		yield return new WaitForSeconds (timeToAnimateto_screen);
+		Egg_Particle_SFX.SetActive (false);
 		StartCoroutine (Anim_MoveToBasket_Coroutine());
 	}
 
@@ -79,13 +84,14 @@ public class AnimationScript : MonoBehaviour {
 		while (EggObject.transform.position != LowerRightOfScreen)
 		{
 			curLerptime += Time.deltaTime;
-			if (curLerptime >= lerpTime) {curLerptime = lerpTime;}
-			float perc = curLerptime / lerpTime;
+			if (curLerptime >= timeToAnimateto_Basket) {curLerptime =timeToAnimateto_Basket;}
+			float perc = curLerptime / timeToAnimateto_Basket;
 			EggObject.transform.position = Vector3.Lerp (startPos,LowerRightOfScreen,perc);
+			//EggObject.transform.localScale = Vector3.Lerp (transform.localScale, new Vector3(0.02f,0.02f,0.02f),perc);
 			yield return null;
 		}
 		Debug.Log("Done moving to basket");
-		yield return new WaitForSeconds (lerpTime);
+		yield return new WaitForSeconds (1.0f);
 		//StartCoroutine (Anim_MoveToBasket_Coroutine());
 		Debug.Log("Basket is now with an egg");
 		GM_Script.IncreaseScore ();

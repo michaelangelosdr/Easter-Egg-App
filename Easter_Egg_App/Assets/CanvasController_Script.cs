@@ -45,11 +45,15 @@ public class CanvasController_Script : MonoBehaviour {
 			foreach (GameObject egg_UI in Canvass_EggObjects) {
 
 
-				GetChildGameObject (egg_UI, "Egg_Open").GetComponent<Image>().enabled = false;
-					GetChildGameObject (egg_UI, "Egg_Missing").GetComponent<Image>().enabled = true;
-				}				
+				GetChildGameObject (egg_UI, "Egg_Open").GetComponent<Image> ().enabled = false;
+				GetChildGameObject (egg_UI, "Egg_Missing").GetComponent<Image> ().enabled = true;
+			}				
+		} else {
+			Canvass_Inventory_Panel.SetActive (true);
+			StartCoroutine (DistributeEggs_CInventory ());
 		}
 
+		Canvass_Inventory_Panel.SetActive (false);
 		return null;
 	}
 
