@@ -9,6 +9,10 @@ public class GM_Script : MonoBehaviour {
 	[SerializeField] Transform TestTarget_list;
 	[SerializeField]  Canvass_Controller C_controller;
 
+
+	//List
+	private List<int> UnUsedIndexes;
+
 	private List<Transform> AllTargets;
 	public int Number_Of_Targets;
 	private int[] Image_Targets;
@@ -32,6 +36,8 @@ public class GM_Script : MonoBehaviour {
 
 		Object_Collected_Count = 0;
 
+		UnUsedIndexes = new List<int> ();
+
 		Image_Targets = new int[Number_Of_Targets];
 		
 		AllTargets = new List<Transform> ();
@@ -47,33 +53,21 @@ public class GM_Script : MonoBehaviour {
 			AllTargets.Add (target);
 		}
 
-	
 
-		for (int x = 0; x < Number_Of_Targets; x++) {
-			Image_Targets [x] = Random.Range (0, AllTargets.Count);	
-		}
+		for (int i = 0; i < Number_Of_Targets; i++) {
 
-	
-		for (int x = 0; x < Number_Of_Targets; x++) {
-
-			for (int y = x + 1; y < Number_Of_Targets ; y++) {
-
-				if(Image_Targets[x] == Image_Targets[y])
-				{
-					Debug.Log (Image_Targets [x] + "AND" + Image_Targets[y] );
-				}
-
-				while (Image_Targets [x] == Image_Targets [y]) {
-					Image_Targets [x] = Random.Range (0, AllTargets.Count);	
-				}
-
-
-
-			}
-
+			UnUsedIndexes.Add (i);
 
 		}
-
+	
+		int val;
+		for (int x = 0; x < Image_Targets.Length; x++) {
+			
+			val = Random.Range (0, UnUsedIndexes.Count);
+			Image_Targets [x] = UnUsedIndexes [val];
+			UnUsedIndexes.RemoveAt (val);
+		}
+			
 
 		
 		
