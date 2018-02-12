@@ -11,18 +11,31 @@ public class BaseObject : MonoBehaviour {
 	bool IsCollected;
 	Egg_Type egg_type;
 
+	GM_Script GMscript;
+
+
+	void Awake()
+	{
+		GMscript = GameObject.Find ("GM").GetComponent<GM_Script> ();
+	}
+
+
 	public virtual void PlayVFX()
 	{
 		//Insert VFX for objects here
-
-
 	}
 
-	void On2DTriggerEnter(Collider col)
+
+
+	void OnMouseOver()
 	{
-		Debug.Log (col.gameObject);
-	}
+		if (Input.GetMouseButtonDown (0)) {
+			//Particles.SetActive (true);
+			//gameObject.GetComponent<MeshCollider>().enabled = false;
+			GMscript.Object_Collected_Successfully();
 
+		}
+	}
 
 }
 public enum Egg_Type

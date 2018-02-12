@@ -38,4 +38,13 @@ public class Game_Manager_Script : MonoBehaviour {
 		Canvas_Handler.Change_ScoreText ();
 	}
 
+
+	public void Game_Finished()
+	{
+		//Placeholder for the game ender
+
+		Debug.Log ("Game_Finished!");
+
+	}
+
 }

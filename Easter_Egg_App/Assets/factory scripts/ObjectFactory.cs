@@ -48,7 +48,7 @@ public class ObjectFactory : MonoBehaviour {
 		switch (egg_type) {
 
 		case Egg_Type.BASIC:
-			_object = this.CreateObjectInstance (Egg_prefab, _Materials[0]);
+			_object = this.CreateObjectInstance (Egg_prefab, _Materials[Random.Range(0,3)]);
 			break;
 		case Egg_Type.SPECIAL:
 			_object = this.CreateObjectInstance (Egg_prefab, _Materials [0]);
