@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="test_flower2" size="3.000000 3.140515" />
+    <ImageTarget name="Flower_P_O" size="1.000000 0.933190" />
+    <ImageTarget name="Test_Flower" size="3.000000 2.250000" />
+    <ImageTarget name="Targetimage5" size="3.000000 3.972000" />
+    <ImageTarget name="Targetimage4" size="3.000000 4.133588" />
+    <ImageTarget name="Targetimage3" size="3.000000 4.298508" />
+    <ImageTarget name="Targetimage1" size="1.000000 1.329588" />
+    <ImageTarget name="TestJoker" size="10.000000 12.952029" />
+    <ImageTarget name="carrot_4" size="50.000000 50.000000" />
+    <ImageTarget name="carrot_3" size="50.000000 50.000000" />
+    <ImageTarget name="carrot_1" size="50.000000 50.000000" />
+    <ImageTarget name="Carrot_2" size="50.000000 54.906544" />
     <ImageTarget name="Carrot" size="50.000000 60.923077" />
   </Tracking>
 </QCARConfig>
