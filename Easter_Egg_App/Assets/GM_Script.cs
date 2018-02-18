@@ -48,31 +48,33 @@ public class GM_Script : MonoBehaviour {
 			}
 		}
 
-
+		//foreach(c
+		for (int x = 0; x < C_controller.Windows.Count; x++) {
+			C_controller.Window_Visibility_Off (x);
+		}
 		foreach (Transform target in TestTarget_list) {
 			AllTargets.Add (target);
 		}
 
 
-		for (int i = 0; i < Number_Of_Targets; i++) {
+
+		
+
+		for (int i = 0; i < TestTarget_list.childCount; i++) {
 
 			UnUsedIndexes.Add (i);
 
 		}
-	
+
 		int val;
 		for (int x = 0; x < Image_Targets.Length; x++) {
-			
+
 			val = Random.Range (0, UnUsedIndexes.Count);
 			Image_Targets [x] = UnUsedIndexes [val];
 			UnUsedIndexes.RemoveAt (val);
 		}
-			
 
-		
-		
-
-		StartCoroutine (LoadEggs ());
+		StartCoroutine (LoadEggs());
 
 
 
@@ -80,10 +82,6 @@ public class GM_Script : MonoBehaviour {
 	
 	}
 
-	public void SpawnEggsOnTargets()
-	{
-
-	}
 
 	// Update is called once per frame
 	void Update () {
@@ -91,13 +89,14 @@ public class GM_Script : MonoBehaviour {
 	}
 		
 
+
 	IEnumerator LoadEggs()
 	{
 
 
 
 
-		for (int x = 0; x < Number_Of_Targets; x++) {
+		for (int x = 0; x < Number_Of_Targets;) {
 			
 			BaseObject G; 
 			G =	ObjectFactory.TryCreateObject (Egg_Type.BASIC);
@@ -110,7 +109,7 @@ public class GM_Script : MonoBehaviour {
 				G.GetComponent<MeshRenderer> ().enabled = false;
 				G.GetComponent<MeshCollider> ().enabled = false;
 			}
-
+			x++;
 		}
 		
 		yield return new WaitForEndOfFrame ();
@@ -120,12 +119,24 @@ public class GM_Script : MonoBehaviour {
 
 	public void Object_Collected_Successfully()
 	{
+		
 		C_controller.Object_Visibility_On (Object_Collected_Count);	
 		Debug.Log ("Egg_Collected");
 		Object_Collected_Count++;
+		if (Object_Collected_Count >= Number_Of_Targets) {
+			End_Game ();
+		}
+
 		C_controller.Object_Count_Change ();
 	}
 
+	public void End_Game()
+	{
+		C_controller.Window_Visibility_On (0);
+
+
+
+	}
 
 	// ======================= Canvas Manager ============================
 

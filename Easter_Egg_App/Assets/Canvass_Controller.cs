@@ -9,6 +9,7 @@ public class Canvass_Controller : MonoBehaviour {
 
 	[SerializeField] List<GameObject> Object_Collect_Images;
 	[SerializeField] Text Object_Count_Text;
+	[SerializeField] public List<GameObject> Windows;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +39,26 @@ public class Canvass_Controller : MonoBehaviour {
 	{
 
 		Object_Count_Text.text = GM_Script.Object_Collected_Count.ToString();
+	}
+
+	public void Window_Visibility_On(int Window_Index)
+	{
+		if(Windows[Window_Index].activeInHierarchy == false)
+			Windows [Window_Index].SetActive (true);
+	}
+
+	public void Window_Visibility_Off(int Window_Index)
+	{
+		if(Windows[Window_Index].activeInHierarchy == true)
+			Windows [Window_Index].SetActive (false);
+	}
+
+	public void Button_Function(GameObject button)
+	{
+		if (button.name == "Win") {
+			Debug.Log ("Open win screen");
+
+		}
 	}
 
 }
