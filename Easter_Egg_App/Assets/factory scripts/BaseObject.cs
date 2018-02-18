@@ -32,7 +32,13 @@ public class BaseObject : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			//Particles.SetActive (true);
 			//gameObject.GetComponent<MeshCollider>().enabled = false;
+
+			gameObject.GetComponent<MeshCollider> ().enabled = false;
 			GMscript.Object_Collected_Successfully();
+
+			//Insert Animation script 
+
+			GameObject.Destroy (this.gameObject);
 
 		}
 	}
