@@ -26,7 +26,9 @@ public class Menu_Canvass_Script : MonoBehaviour {
 			//Load Game scene
 			SceneManager.LoadScene (1);
 		}
-
+		if (Button.name == "return") {
+			SceneManager.LoadScene (0);
+		}
 
 
 	}

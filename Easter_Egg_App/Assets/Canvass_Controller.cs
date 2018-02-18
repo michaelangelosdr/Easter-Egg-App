@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Canvass_Controller : MonoBehaviour {
@@ -57,7 +57,7 @@ public class Canvass_Controller : MonoBehaviour {
 	{
 		if (button.name == "Win") {
 			Debug.Log ("Open win screen");
-
+			SceneManager.LoadScene (2);
 		}
 	}
 
