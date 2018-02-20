@@ -132,5 +132,8 @@ public class GM_Script : MonoBehaviour {
 		
 	// ======================= Canvas Manager ============================
 
-
+	public void Explosion_Animation()
+	{
+		C_controller.Start_Particle_Animation ();
+	}
 }
