@@ -24,9 +24,11 @@ public class Menu_Canvass_Script : MonoBehaviour {
 	{
 		if (Button.name == "start_but") {
 			//Load Game scene
+			SceneManager.LoadScene (2);
+		}
+		if (Button.name == "return") {
 			SceneManager.LoadScene (1);
 		}
-
 
 
 	}

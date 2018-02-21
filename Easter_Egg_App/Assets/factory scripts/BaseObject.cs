@@ -37,6 +37,7 @@ public class BaseObject : MonoBehaviour {
 			GMscript.Object_Collected_Successfully();
 
 			//Insert Animation script 
+			GMscript.Explosion_Animation();
 
 			GameObject.Destroy (this.gameObject);
 

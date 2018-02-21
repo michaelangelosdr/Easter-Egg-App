@@ -42,38 +42,8 @@ public class GM_Script : MonoBehaviour {
 		
 		AllTargets = new List<Transform> ();
 
-		if (Object_Collected_Count <= 0) {
-			for (int x = 0; x < 5; x++) {	
-				C_controller.Object_Visibility_Off (x);
-			}
-		}
 
-		//foreach(c
-		for (int x = 0; x < C_controller.Windows.Count; x++) {
-			C_controller.Window_Visibility_Off (x);
-		}
-		foreach (Transform target in TestTarget_list) {
-			AllTargets.Add (target);
-		}
-
-
-
-		
-
-		for (int i = 0; i < TestTarget_list.childCount; i++) {
-
-			UnUsedIndexes.Add (i);
-
-		}
-
-		int val;
-		for (int x = 0; x < Image_Targets.Length; x++) {
-
-			val = Random.Range (0, UnUsedIndexes.Count);
-			Image_Targets [x] = UnUsedIndexes [val];
-			UnUsedIndexes.RemoveAt (val);
-		}
-
+		StartCoroutine (StartUp_Coroutine ());
 		StartCoroutine (LoadEggs());
 
 
@@ -96,7 +66,7 @@ public class GM_Script : MonoBehaviour {
 
 
 
-		for (int x = 0; x < Number_Of_Targets;) {
+		for (int x = 0; x < Number_Of_Targets;x++) {
 			
 			BaseObject G; 
 			G =	ObjectFactory.TryCreateObject (Egg_Type.BASIC);
@@ -104,12 +74,10 @@ public class GM_Script : MonoBehaviour {
 			G.transform.SetParent (AllTargets[Image_Targets[x]].transform);
 			G.transform.localPosition = new Vector3 (0, 0.25f, -0.25f);
 
-			if (x == Number_Of_Targets) {
-				G.name = "Last";
-				G.GetComponent<MeshRenderer> ().enabled = false;
-				G.GetComponent<MeshCollider> ().enabled = false;
-			}
-			x++;
+
+			//G.GetComponent<MeshRenderer> ().enabled = false;
+			//G.GetComponent<MeshCollider> ().enabled = false;
+
 		}
 		
 		yield return new WaitForEndOfFrame ();
@@ -133,12 +101,39 @@ public class GM_Script : MonoBehaviour {
 	public void End_Game()
 	{
 		C_controller.Window_Visibility_On (0);
-
-
-
 	}
 
+	IEnumerator StartUp_Coroutine()
+	{
+		if (Object_Collected_Count <= 0) {
+			for (int x = 0; x < 5; x++) {	
+				C_controller.Object_Visibility_Off (x);
+			}
+		}
+		for (int x = 0; x < C_controller.Windows.Count; x++) {
+			C_controller.Window_Visibility_Off (x);
+		}
+		foreach (Transform target in TestTarget_list) {
+			AllTargets.Add (target);
+		}
+
+		for (int i = 0; i < TestTarget_list.childCount; i++) {
+			UnUsedIndexes.Add (i);
+		}
+
+		int val;
+		for (int x = 0; x < Image_Targets.Length; x++) {
+			val = Random.Range (0, UnUsedIndexes.Count);
+			Image_Targets [x] = UnUsedIndexes [val];
+			UnUsedIndexes.RemoveAt (val);
+		}
+		yield return new WaitForSeconds (0);;
+	}
+		
 	// ======================= Canvas Manager ============================
 
-
+	public void Explosion_Animation()
+	{
+		C_controller.Start_Particle_Animation ();
+	}
 }

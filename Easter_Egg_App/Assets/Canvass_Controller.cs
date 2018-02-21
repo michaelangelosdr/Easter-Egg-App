@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Canvass_Controller : MonoBehaviour {
@@ -10,6 +10,8 @@ public class Canvass_Controller : MonoBehaviour {
 	[SerializeField] List<GameObject> Object_Collect_Images;
 	[SerializeField] Text Object_Count_Text;
 	[SerializeField] public List<GameObject> Windows;
+	[SerializeField] ParticleSystem Collect_Particle;
+
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +23,11 @@ public class Canvass_Controller : MonoBehaviour {
 		
 	}
 
+
+	public void Start_Particle_Animation()
+	{
+		Collect_Particle.Play ();
+	}
 
 
 	public void Object_Visibility_On(int Object_Index)
@@ -57,7 +64,7 @@ public class Canvass_Controller : MonoBehaviour {
 	{
 		if (button.name == "Win") {
 			Debug.Log ("Open win screen");
-
+			SceneManager.LoadScene (3);
 		}
 	}
 
