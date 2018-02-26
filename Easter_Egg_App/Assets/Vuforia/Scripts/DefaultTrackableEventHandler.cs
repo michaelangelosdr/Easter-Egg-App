@@ -101,7 +101,7 @@ namespace Vuforia
             // Disable colliders:
             foreach (Collider component in colliderComponents)
             {
-               // component.enabled = false;
+                component.enabled = false;
             }
 
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
