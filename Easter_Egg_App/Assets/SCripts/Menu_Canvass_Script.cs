@@ -6,18 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Menu_Canvass_Script : MonoBehaviour {
 
-
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+	[SerializeField] PlayerItems_Controller PI_cont;
+	[SerializeField] GameObject PlayerCreate_Button;
 
 
 	public void ButtonFunctionality(GameObject Button)
@@ -29,6 +19,16 @@ public class Menu_Canvass_Script : MonoBehaviour {
 		if (Button.name == "return") {
 			SceneManager.LoadScene (0);
 		}
+	}
+
+	public void ArrowLeft()
+	{
+		PI_cont.Move_left ();
+	}
+
+	public void ArrowRight()
+	{
+		PI_cont.Move_Right ();
 
 
 	}
