@@ -9,9 +9,11 @@ public class Player_Data_Creation : MonoBehaviour {
 
 
 
-	public void CreateNew()
+	public void CreateNew(string givplayername,int givplayerage,string givplayergender)
 	{
-		Player_Data_Handler.Local_PlayerData_Names.Add ("Test" + Player_Data_Handler.Local_PlayerData_Names.Count);	
+		Debug.Log ("Creating Data");
+		Player_Data_Handler.SaveGameData (givplayername,givplayerage,givplayergender);
+		PI_controller.CreatePlayerItem (givplayername,givplayergender);
 		PI_controller.Reset_UI ();
 	}
 
