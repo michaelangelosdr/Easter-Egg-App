@@ -11,12 +11,17 @@ public class Canvass_Controller : MonoBehaviour {
 	[SerializeField] Text Object_Count_Text;
 	[SerializeField] public List<GameObject> Windows;
 	[SerializeField] ParticleSystem Collect_Particle;
+	[SerializeField] GameObject PD_Script;
+	[SerializeField] Text Player_Name;
 
 
 	// Use this for initialization
 	void Start () {
-		
+		PD_Script = GameObject.Find ("Player_Data_Handler");
+
+		Player_Name.text = PD_Script.GetComponent<Player_Data_script> ().Get_Profile_Name();
 	}
+		
 	
 	// Update is called once per frame
 	void Update () {
