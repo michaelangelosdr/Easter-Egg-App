@@ -5,11 +5,17 @@ using QRCoder;
 using UnityEngine.UI;
 
 public class QRcode : MonoBehaviour {
-	string link = "My name is jeff and i like to sing da songs of the people";
+	string link;
+
+
 
 	// Use this for initialization
 	void Start () {
 
+		//PD_Script = GameObject.Find ("Player_Data_Handler");
+
+
+		/*
 		QRCodeGenerator qrGenerator = new QRCodeGenerator();
 		QRCodeData qrCodeData = qrGenerator.CreateQrCode(link, QRCodeGenerator.ECCLevel.M);
 
@@ -20,11 +26,9 @@ public class QRcode : MonoBehaviour {
 
 		Sprite sprite = Sprite.Create (qrCodeImage, new Rect (0, 0, qrCodeImage.width, qrCodeImage.height), new Vector2 (.5f, .5f));
 		Image image = this.GetComponent<Image>();
-		image.sprite = sprite;
+		image.sprite = sprite;*/
 	}
-
-
-
+		
 	public void Assign_Data_To_QRGenerator(string DataString)
 	{
 
@@ -42,5 +46,5 @@ public class QRcode : MonoBehaviour {
 
 		Debug.Log ("Data Input: " + DataString);
 	}
-
+		
 }

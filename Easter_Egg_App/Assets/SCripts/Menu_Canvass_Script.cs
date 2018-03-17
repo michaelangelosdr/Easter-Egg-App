@@ -10,6 +10,7 @@ public class Menu_Canvass_Script : MonoBehaviour {
 	[SerializeField] PlayerItems_Controller PI_cont;
 	[SerializeField] GameObject PlayerCreate_Button;
 	[SerializeField] Player_Data_Creation PD_Create;
+	[SerializeField] Player_Data_script PD_script;
 
 
 
@@ -29,6 +30,7 @@ public class Menu_Canvass_Script : MonoBehaviour {
 	{
 		if (Button.name == "start_but") {
 			//Load Game scene
+			PD_script.Get_Profile_Index();
 			SceneManager.LoadScene (2);
 		}
 		if (Button.name == "return") {
@@ -58,6 +60,10 @@ public class Menu_Canvass_Script : MonoBehaviour {
 		int Player_Age = int.Parse(AgeInputField.GetComponent<InputField> ().text);
 		string Player_Gender = GenderInput.GetComponent<Text> ().text;
 		PD_Create.CreateNew (Player_Name,Player_Age,Player_Gender);
+
+		if (PlayerCreation_Modal.activeInHierarchy)
+			PlayerCreation_Modal.SetActive (false);
+		
 	
 	}
 
@@ -72,4 +78,8 @@ public class Menu_Canvass_Script : MonoBehaviour {
 
 	}
 
+	public void DeleteStuff()
+	{
+		PlayerPrefs.DeleteAll ();
+	}
 }

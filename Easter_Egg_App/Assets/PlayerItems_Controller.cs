@@ -24,7 +24,7 @@ public class PlayerItems_Controller : MonoBehaviour {
 		}
 
 
-
+		Player_Data.AddtoPlayerItemList ();
 		Player_Data.Populate_Menu_Buttons ();
 	}
 
